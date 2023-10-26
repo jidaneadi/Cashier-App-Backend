@@ -14,9 +14,14 @@ module.exports = async(req, res) => {
 
     const validation = v.validate(req.body, schema)
     if(validation.length){
-        return res.status(400).json({msg : validation})
+        return res.status(400).json(validation)
     }
 
+    const cekNama = await Barang.findOne({where:{nama_barang : req.body.nama_barang}})
+    if(cekNama){
+        return res.status(400).json({msg : "Nama barang sudah tersedia"})
+    }
+    
     const data ={
         nama_barang : req.body.nama_barang,
         stok : req.body.stok,

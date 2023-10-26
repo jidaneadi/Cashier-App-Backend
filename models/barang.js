@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         nama_barang :{
             type : DataTypes.STRING,
+            unique: true
         },
         stok : {
             type : DataTypes.INTEGER,

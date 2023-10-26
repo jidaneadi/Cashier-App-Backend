@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         nama :{
             type : DataTypes.STRING,
+            unique: true
         },
         no_hp : {
             type : DataTypes.STRING,

@@ -19,15 +19,20 @@ module.exports = async(req, res) => {
     const validation = v.validate(req.body, schema)
 
     if(validation.length){
-        return res.status(400).json({
-            msg : validation
-        })
+        return res.status(400).json(validation)
     }
 
-    const cek = await Pelanggan.findOne({where:{no_hp : req.body.no_hp}})
-
-    if(cek){
-        return res.status(400).json({msg : "Nomor hp sudah digunakan"})
+    const noHp = req.body.no_hp
+    if (noHp) {
+      const cekNomor = await Pelanggan.findOne({
+        where: { no_hp : noHp },
+      });
+  
+      if (cekNomor && noHp !== cekId.no_hp) {
+        return res.status(400).json({
+          message: "Nmor hp sudah digunakan",
+        });
+      }
     }
 
     const data = {

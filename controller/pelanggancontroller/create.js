@@ -12,9 +12,7 @@ module.exports = async (req, res) => {
     const validation = v.validate(req.body, schema)
 
     if(validation.length){
-        return res.status(400).json({
-            msg : validation
-        })
+        return res.status(400).json(validation)
     }
 
     const cek = await Pelanggan.findOne({where:{no_hp : req.body.no_hp}})
