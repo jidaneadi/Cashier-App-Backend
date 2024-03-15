@@ -1,27 +1,32 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 require('dotenv').config();
+const cors = require('cors');
 
-var indexRouter = require('./routes/index');
-var pelangganRouter = require('./routes/pelanggan');
-var barangRouter = require('./routes/barang');
-var keranjangRouter = require('./routes/keranjang');
-var transaksiRouter = require('./routes/transaksi');
-
-var app = express();
+const indexRouter = require('./routes/index');
+const productRouter = require('./routes/product');
+const keranjangRouter = require('./routes/keranjang');
+const transaksiRouter = require('./routes/transaksi');
+const karyawanRouter = require('./routes/karyawan');
+const loginRouter = require('./routes/index');
+const tokenRouter = require('./routes/token');
+const app = express();
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/pelanggan', pelangganRouter);
-app.use('/barang', barangRouter);
+app.use('/product', productRouter);
 app.use('/keranjang', keranjangRouter);
 app.use('/transaksi', transaksiRouter);
+app.use('/karyawan', karyawanRouter);
+app.use('/login', loginRouter);
+app.use('/refresh', tokenRouter);
 
 module.exports = app;
