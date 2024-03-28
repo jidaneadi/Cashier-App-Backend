@@ -5,7 +5,6 @@ const transaksiController = require('../controller/transaksicontroller')
 router.post("/", transaksiController.createTransaksi)
 router.put("/:id", transaksiController.updateTransaksi)
 router.delete("/:id", transaksiController.deleteTransaksi)
-router.get('/:id', transaksiController.showByIdTransaksi)
 router.get('/', transaksiController.showAll)
 
 module.exports = router

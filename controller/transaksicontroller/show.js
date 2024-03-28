@@ -2,7 +2,7 @@ const { QueryTypes } = require("sequelize")
 const { sequelize, Transaksi } = require("../../models")
 
 module.exports = async(req, res) => {
-    const dataTransaksi = await sequelize.query('SELECT transaksi.id, transaksi.nama_pelanggan, transaksi.tot_harga, transaksi.pembayaran, transaksi.layanan, DATE_FORMAT(transaksi.updatedAt, "%Y-%m-%d") as updatedAt, karyawan.nama FROM transaksi LEFT JOIN karyawan ON transaksi.id_karyawan = karyawan.id',
+    const dataTransaksi = await sequelize.query('SELECT transaksi.id, transaksi.nama_pelanggan, transaksi.tot_harga, transaksi.pembayaran, transaksi.layanan, DATE_FORMAT(transaksi.updatedAt, "%Y-%m-%d %H:%i:%s") as updatedAt, karyawan.nama FROM transaksi LEFT JOIN karyawan ON transaksi.id_karyawan = karyawan.id',
     {
         type: QueryTypes.SELECT
       })

@@ -12,7 +12,7 @@ module.exports = async(req, res) => {
         return res.status(404).json({msg : "Data tidak ditemukan!"})
     }
 
-      const dataKeranjang = await sequelize.query('SELECT keranjang.jumlah, produk.nama_produk, produk.harga FROM keranjang LEFT JOIN produk ON keranjang.id_barang = produk.id WHERE keranjang.id_transaksi = ?',
+      const dataKeranjang = await sequelize.query('SELECT keranjang.id, keranjang.jumlah, produk.nama_produk, produk.harga FROM keranjang LEFT JOIN produk ON keranjang.id_barang = produk.id WHERE keranjang.id_transaksi = ?',
     {
         replacements: [id],
         type: QueryTypes.SELECT
