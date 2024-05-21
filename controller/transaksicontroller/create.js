@@ -42,13 +42,15 @@ module.exports = async (req, res) => {
 
   const createTransaksi = await Transaksi.create(dataTransaksi);
 
-  const dataKeranjang = {
-    id_barang: createTransaksi.id,
-    id_transaksi: req.body.id_transaksi,
-    jumlah: req.body.jumlah,
-  };
+  for (const item of req.body.keranjang) {
+    const dataKeranjang = {
+      id_barang: item.id_barang,
+      id_transaksi: createTransaksi.id,
+      jumlah: item.jumlah,
+    };
 
-  const createKeranjang = await Keranjang.create(dataTransaksi);
+    await Keranjang.create(dataKeranjang);
+  }
 
   return res.status(200).json({ msg: "Transaksi berhasil" });
 };
