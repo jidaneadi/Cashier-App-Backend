@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-require('dotenv').config();
+// require('dotenv').config();
+require('dotenv').config({ path: '.env' })
 const cors = require('cors');
 
 const indexRouter = require('./routes/index');
@@ -29,4 +30,5 @@ app.use('/karyawan', karyawanRouter);
 app.use('/login', loginRouter);
 app.use('/refresh', tokenRouter);
 
-module.exports = app;
+// module.exports = app;
+app.listen(process.env.PORT);
