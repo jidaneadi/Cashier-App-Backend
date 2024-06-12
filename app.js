@@ -30,5 +30,5 @@ app.use('/karyawan', karyawanRouter);
 app.use('/login', loginRouter);
 app.use('/refresh', tokenRouter);
 
-// module.exports = app;
-app.listen(process.env.PORT);
+module.exports = app;
+// app.listen(process.env.PORT);
