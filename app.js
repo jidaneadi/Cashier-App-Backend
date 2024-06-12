@@ -14,9 +14,13 @@ const karyawanRouter = require('./routes/karyawan');
 const loginRouter = require('./routes/index');
 const tokenRouter = require('./routes/token');
 const app = express();
+const corsOptions = {
+    origin: 'https://localhost:3003',
+    optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 
 app.use(logger('dev'));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
