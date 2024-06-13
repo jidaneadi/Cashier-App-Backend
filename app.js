@@ -18,12 +18,12 @@ const corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 204,
   allowedHeaders: "Content-Type,Authorization",
 };
 
 app.use(logger("dev"));
-app.use(cors(corsOptions));
+app.use('*',cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
