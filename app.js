@@ -15,7 +15,7 @@ const loginRouter = require('./routes/index');
 const tokenRouter = require('./routes/token');
 const app = express();
 const corsOptions = {
-    origin: 'https://localhost:3003',
+    origin: '*',
     optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 
