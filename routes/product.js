@@ -1,11 +1,21 @@
-const express = require('express')
-const router = express.Router()
-const productcontrollers = require('../controller/productcontroller')
+const express = require("express");
+const router = express.Router();
+const productcontrollers = require("../controller/productcontroller");
+const cors = require("cors");
 
-router.post('/', productcontrollers.createBarang)
-router.put('/:id', productcontrollers.UpdateBarang)
-router.get('/', productcontrollers.showBarang)
-router.get('/:id', productcontrollers.showById)
-router.delete('/:id', productcontrollers.deleteBarang)
+// Setup CORS middleware
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+};
 
-module.exports = router
+router.use(cors(corsOptions));
+
+router.post("/", cors(corsOptions), productcontrollers.createBarang);
+router.put("/:id", cors(corsOptions),productcontrollers.UpdateBarang);
+router.get("/", cors(corsOptions),productcontrollers.showBarang);
+router.get("/:id",cors(corsOptions), productcontrollers.showById);
+router.delete("/:id",cors(corsOptions), productcontrollers.deleteBarang);
+
+module.exports = router;
