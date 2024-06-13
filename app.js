@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-// require('dotenv').config();
 require("dotenv").config({ path: ".env" });
 const cors = require("cors");
 
@@ -13,17 +12,19 @@ const transaksiRouter = require("./routes/transaksi");
 const karyawanRouter = require("./routes/karyawan");
 const loginRouter = require("./routes/index");
 const tokenRouter = require("./routes/token");
+
 const app = express();
+
+// Setup CORS middleware
 const corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
   allowedHeaders: "Content-Type,Authorization",
 };
 
+app.use(cors(corsOptions));
+
 app.use(logger("dev"));
-app.use('*',cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -38,4 +39,3 @@ app.use("/login", loginRouter);
 app.use("/refresh", tokenRouter);
 
 module.exports = app;
-// app.listen(process.env.PORT);
